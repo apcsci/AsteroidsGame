@@ -30,14 +30,14 @@ public void draw()
   for(int i = 0; i < jk.size(); i++){
     jk.get(i).move();
     jk.get(i).show();
-    //for(int j = 0; j < jin.size(); j++) {
-       //float a = dist((float)jk.get(i).getX(), (float)jk.get(i).getY(), (float)jin.get(j).getX(), (float)jin.get(j).getY());
-       //if(a < 10) {
-         //jk.remove(i); 
-         //jin.remove(j);
-         //break;
-       //}
-    //}
+    for(int j = 0; j < jin.size(); j++) {
+       float a = dist((float)jk.get(i).getX(), (float)jk.get(i).getY(), (float)jin.get(j).getX(), (float)jin.get(j).getY());
+       if(a < 10) {
+         jk.remove(i); 
+         jin.remove(j);
+         break;
+       }
+    }
   }
 }
 public void keyPressed(){
