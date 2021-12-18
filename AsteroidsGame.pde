@@ -1,5 +1,6 @@
 Spaceship bob = new Spaceship();
 ArrayList <Asteroid> jin = new ArrayList <Asteroid>();
+ArrayList < Bullet> jk = new ArrayList<Bullet>();
 Star[] nightSky = new Star[200];
 
 public void setup() {
@@ -11,10 +12,11 @@ public void setup() {
     jin.add(new Asteroid()); 
   }
 }
-
 public void draw() 
 {
   background(0);
+  bob.show();
+  bob.move();
   for(int i = 0; i < nightSky.length; i++) {
     nightSky[i].show();
   }
@@ -24,22 +26,29 @@ public void draw()
     float d = dist((float)bob.getX(), (float)bob.getY(), (float)jin.get(i).getX(), (float)jin.get(i).getY());
     if (d < 10) 
       jin.remove(i);
- 
   }
-  bob.show();
-  bob.move();
+  for(int i = 0; i < jk.size(); i++){
+    jk.get(i).move();
+    jk.get(i).show();
+    for(int j = 0; j < jin.size(); j++) {
+       float a = dist((float)jk.get(i).getX(), (float)jk.get(i).getY(), (float)jin.get(j).getX(), (float)jin.get(j).getY());
+       if(a < 10) {
+         jk.remove(i); 
+         jin.remove(j);
+         break;
+       }
+    }
+  }
 }
 public void keyPressed(){
-  if(key == 'h'){
+  if(key == 'h')
     bob.hyperspace();
-  }
-  if(key == 'a'){
+  else if(key == 'a')
     bob.accelerate(10);
-  }
-  if(key == 'g'){
+  else if(key == 'g')
     bob.turn(10);
-  }
-  if(key == 'f'){
+  else if(key == 'f')
     bob.turn(-10);
-  }
+  else if(key == 'b') 
+    jk.add(new Bullet(bob));
 }
