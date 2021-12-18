@@ -43,12 +43,12 @@ public void draw()
 public void keyPressed(){
   if(key == 'h')
     bob.hyperspace();
-  else if(key == 'a')
+  if(key == 'a')
     bob.accelerate(10);
-  else if(key == 'g')
+  if(key == 'g')
     bob.turn(10);
-  else if(key == 'f')
+  if(key == 'f')
     bob.turn(-10);
-  else if(key == 'b') 
+  if(key == 'b') 
     jk.add(new Bullet(bob));
 }
